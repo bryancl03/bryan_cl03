@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="main.css"/>
+    </head>
+    <body background="https://pbs.twimg.com/profile_background_images/54604124/Foxsports_background.png">
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="mlb.html">MLB</a></li>
+            <li><a href="nba.html">NBA</a></li>
+            <li><a href="nfl.html">NFL</a></li>            
+            <li><a href="soccer.html">Soccer</a></li>            
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <h1 align="center">Greatest rivalries in sports entertainment</h1>
+        
+        <div class="gallery">
+                <figure class="gallery-item">
+                    <a href="nfl.html"><img class="thumbnail" src="http://cdn.bleacherreport.net/images/team_logos/328x328/nfl.png">
+                    </a>
+                </figure>
+                <figure class="gallery-item">
+                    <a href="mlb.html"><img class="thumbnail" src="http://cdn.bleacherreport.net/images/team_logos/328x328/mlb.png">
+                    </a>
+                </figure>
+                <figure class="gallery-item">
+                    <a href="nba.html"><img class="thumbnail" src="http://cdn.bleacherreport.net/images/team_logos/328x328/nba.png">
+                </a>
+                </figure>
+                <figure class="gallery-item">
+                    <a href="soccer.html"><img class="thumbnail" src="http://cdn.bleacherreport.net/images/team_logos/328x328/soccer.png">
+                </a>
+                </figure>
+        </div>
+        
+        <h2>
+            <p>Check the weather for your sports team</p>
+        </h2>
+        <p id="footer">
+        Enter a city: <input type="text" id="weather">
+        <button onclick="myFunction()">Submit</button>
+        <div id="container" />
+
+        <script src="ajax.js"></script>
+        <script src="parse-response.js"></script>
+        <script>
+            /* global ajax */
+            /* global parseResponse*/
+            function myFunction() {
+                var container = document.getElementById('container');
+                var url = "http://api.openweathermap.org/data/2.5/weather?q="; 
+                var city = document.getElementById("weather").value;
+                document.getElementById("weather").value = '';
+                var apiKey = "f5168e9de57f321898f65f4c5b4c9ebf"; 
+                url += city + "&appid=" + apiKey; 
+                ajax(url, function(resp) {    
+                    resp = parseResponse(resp);
+                    container.appendChild(document.createTextNode(resp)); 
+                    })
+                container.removeChild(container.lastChild);
+            }
+        </script>
+        </p>
+    </body>
+</html>
